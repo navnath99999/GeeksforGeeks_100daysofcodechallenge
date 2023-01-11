@@ -1,0 +1,92 @@
+class Solution {
+
+  
+
+    public long minIncrements(int[] arr, int N) {
+
+        // Code here
+
+        Arrays.sort(arr);
+
+        long num = 0;
+
+        for(int i =0;i<N;i++){
+
+            
+
+        
+
+            int index = binary_search(arr,arr[i]);
+
+            int left = index-1;
+
+           
+
+            while(left>=0&& arr[left]== arr[i]){
+
+                left--;
+
+            }
+
+           
+
+            int right = left+2;
+
+            while(right<arr.length && arr[right]==arr[i]){
+
+                arr[right]++;
+
+                num++;
+
+                right++;
+
+            }
+
+        
+
+        } 
+
+        
+
+        return num;
+
+    }
+
+    
+
+    public int binary_search(int[] arr,int n){
+
+        int low= 0;
+
+        int high = arr.length-1;
+
+        while(low<=high){
+
+            int mid = (low+high)/2;
+
+            if(arr[mid] == n){
+
+                return mid;
+
+            }
+
+            else if (arr[mid]>n){
+
+                high = mid-1;
+
+            }
+
+            else low = mid+1;
+
+            
+
+        }
+
+        return -1;
+
+        
+
+    }
+
+}
+

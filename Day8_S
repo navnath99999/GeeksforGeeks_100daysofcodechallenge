@@ -1,0 +1,31 @@
+class Solution {
+
+    long minimizeSum(int N, int arr[]) {
+
+       PriorityQueue<Long> pq = new PriorityQueue<>();
+
+       long res = 0;
+
+       for(int i : arr) pq.add(i * 1l);
+
+       while(pq.size() > 1) {
+
+           long a = pq.poll(), b = pq.poll();
+
+           long sum = a + b;
+
+           pq.add(sum);
+
+           res += sum;
+
+    }
+
+    return res;
+
+}
+
+}
+
+ 
+
+ 

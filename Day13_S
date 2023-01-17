@@ -1,0 +1,30 @@
+class Solution
+{
+    int maxGCD(Node r)
+    {
+        int ans=0, mx=Integer.MIN_VALUE;
+        Queue<Node> q = new LinkedList<>();
+        q.add(r);
+        while(q.size()>0)
+        {
+            Node n = q.poll();
+            if(n.left!=null && n.right!=null)
+            {
+                int k=gcd(n.left.data, n.right.data);
+                if(k>=mx)
+                {
+                    mx=k;
+                    ans=n.data;
+                }
+            }
+            if(n.left!=null) q.add(n.left);
+            if(n.right!=null) q.add(n.right);
+        }
+        return ans;
+    }
+    static int gcd(int A,int B)
+    {
+        if(B==0)return A;
+        return(gcd(B,A%B));
+    }
+}

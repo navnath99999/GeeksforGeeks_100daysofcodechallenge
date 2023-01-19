@@ -1,0 +1,95 @@
+class Solution{
+
+    int carpetBox(int A, int B, int C, int D) { 
+
+        
+
+        //Store the original length and breadth of the carpet and the box
+
+ 
+
+        int lenC = A;
+
+        int bdtC = B;
+
+        int lenB = C;
+
+        int bdtB = D;
+
+        
+
+        int count1 = 0;
+
+        int count2 = 0;
+
+        
+
+        //reduce the length and breadth of the carpet if it is greater than box
+
+        
+
+        while(A > C){
+
+            A = A/2;
+
+            count1++;
+
+        }
+
+        
+
+        while(B > D){
+
+            B = B/2;
+
+            count1++;
+
+        }
+
+        
+
+        // This is after rotating the carpet 90 degree now length is breadth abd vice versa
+
+        
+
+        //reduce the breadth and lenght if it is greater than breadth
+
+        
+
+        while(bdtC > lenB){
+
+            bdtC = bdtC/2;
+
+            count2++;
+
+        }
+
+        
+
+        while(lenC > bdtB){
+
+            lenC = lenC/2;
+
+            count2++;
+
+        }
+
+        //return the minimum number of count required to fit the carpet in box
+
+        //count1 is the number of step normally
+
+        //count2 is the number of step required ater rotating the carpet 90 degree
+
+        int ans = Math.min(count1,count2);
+
+        
+
+        return ans;
+
+        
+
+    }
+
+ 
+
+}

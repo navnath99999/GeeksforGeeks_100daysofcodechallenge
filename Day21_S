@@ -1,0 +1,15 @@
+class Solution {
+    int minOperation(String s) {
+        // code here
+        int n=s.length();
+        if(n<4) return n;
+        int i=0,j=n;
+        while(i<j){
+            int mid=(j-i)/2;
+      if(s.substring(0,mid).equals(s.substring(mid,2*mid)))
+            return mid+1+(n-2*mid);
+            j--;
+        }
+        return n;
+    }
+}

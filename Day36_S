@@ -1,0 +1,31 @@
+//User function Template for Java
+
+class Solution
+{public int maximumMatch(int[][] G)
+    {
+        // Code here
+        int n = G[0].length;
+        int m = G.length;
+        int[] visit = new int[n];
+        Arrays.fill(visit,-1);
+        int ans=0;
+        for(int i=0;i<m;i++) {
+            boolean[] seen = new boolean[n];
+            if(dfs(G,i,seen,visit)) ans++;
+        }
+        return ans;
+    }
+    
+    public static boolean dfs(int[][] g,int src,boolean[] seen,int[] visit) {
+        for(int i=0;i<g[0].length;i++) {
+            if(g[src][i]==1 && !seen[i]) {
+                seen[i]=true;
+                if(visit[i]<0 || dfs(g,visit[i],seen,visit)) {
+                    visit[i]=src;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}

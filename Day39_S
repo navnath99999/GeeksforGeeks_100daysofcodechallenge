@@ -1,0 +1,92 @@
+class Solution
+
+{
+    boolean isPrime(int n)
+    {
+
+        if (n <= 1) 
+        {
+
+            return false;
+
+        }
+
+        if (n == 2) 
+        {
+
+            return true;
+
+        }
+
+        for (int i = 2; i <= Math.sqrt(n) + 1; i++)
+        {
+
+            if (n % i == 0) 
+            {
+
+                return false;
+
+            }
+
+        }
+
+        return true;
+
+    }
+
+    Node primeList(Node head)
+    {
+
+        Node root = head;
+
+        while(root!=null)
+        {
+
+            int val = root.val;
+
+            if(val==1)
+            {
+
+                root.val = 2;
+
+                root = root.next;
+
+            }
+
+            else if(isPrime(val))
+
+                root = root.next;
+
+            else
+            {
+
+                int x = val-1,y=val+1;
+
+                while(!isPrime(x) && !isPrime(y))
+                {
+
+                    x--;
+
+                    y++;
+
+                }
+
+                if(isPrime(x))
+
+                    root.val = x;
+
+                else 
+
+                    root.val = y;
+
+                root = root.next;
+
+            }
+
+        }
+
+        return head;
+
+    }
+
+}

@@ -1,0 +1,58 @@
+// User function Template for Java
+
+/*
+    class Node {
+        int data;
+        Node left;
+        Node right;
+        Node(int data) {
+            this.data = data;
+            left = null;
+            right = null;
+        }
+    }
+*/
+
+class Solution 
+{
+
+    Node misPlacedNode1=null,misPlacedNode2=null,prevNode=null;
+
+    public Node correctBST(Node root) 
+    {
+        // code here
+        inorder(root);
+
+        int temp=misPlacedNode1.data;
+
+        misPlacedNode1.data=misPlacedNode2.data;
+
+        misPlacedNode2.data=temp;
+
+        return root;
+    }
+
+    private void inorder(Node root)
+    {
+        if(root==null) return;
+
+        inorder(root.left);
+
+        if(prevNode!=null)
+        {
+            if(prevNode.data>root.data)
+            {
+                if(misPlacedNode1==null) misPlacedNode1=prevNode;
+
+                misPlacedNode2=root;
+
+            }
+
+        }
+
+        prevNode=root;
+
+        inorder(root.right);
+
+    }
+}

@@ -1,0 +1,63 @@
+
+class Solution 
+{
+
+    int vertex =0, edges = 0;
+
+    public void fun(int Node, ArrayList<ArrayList<Integer>> adj, int [] visited)
+    {
+
+        visited[Node] = 1;
+
+        vertex++;
+
+        for(Integer elem: adj.get(Node))
+        {
+
+            edges++;
+
+            if(visited[elem] == 0)
+            {
+
+                fun(elem, adj, visited);
+
+            }
+
+        }
+
+    }
+
+    
+
+    public int findNumberOfGoodComponent(int V, ArrayList<ArrayList<Integer>> adj) 
+    {
+
+        int [] visited = new int[V+1];
+
+        int count = 0;
+
+        for(int i=1; i<adj.size(); i++)
+        {
+
+            if(visited[i] == 0)
+            {
+
+                vertex = 0;
+
+                edges = 0;
+
+                fun(i, adj, visited);
+
+                if(edges/2 == (vertex*(vertex-1))/2) count++;
+
+            }
+
+        }
+
+        return count;
+
+    }
+
+ 
+
+}

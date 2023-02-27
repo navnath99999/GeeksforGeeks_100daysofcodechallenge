@@ -1,0 +1,66 @@
+/*
+
+Definition for singly Link List Node
+class Node
+{
+    int data;
+    Node next;
+
+    Node(int x){
+        data = x;
+        next = null;
+    }
+}
+
+You can also use the following for printing the link list.
+Node.printList(Node node);
+*/
+
+class Solution 
+{
+    public static Node reverse(Node head, int k)
+    {
+        // code here
+        Node head1 = head ;
+        int len = 0 ;
+        Node tem = head ;
+        int i = k ;
+        
+        while(tem!=null)
+        {
+            if(i>0)
+            head1 = head1.next ;
+            tem = tem.next ;
+            len++ ;
+            i-- ;
+        }
+        Node left = rev(head,k) ;
+        
+        Node right = rev(head1,len-k) ;
+        Node ans = left ;
+        
+        while(left.next!=null)
+        {
+            left = left.next ;
+        }
+        left.next = right ;
+        return ans ;
+    }
+    
+    public static Node rev(Node node, int n)
+    {
+        Node past = null ;
+        Node fu = node ;
+        
+        while(fu!=null && n>0)
+        {
+            fu =  fu.next ;
+            node.next = past ;
+            past = node ;
+            node = fu ;
+            n-- ;
+        }
+        return past ;
+    }
+}
+        

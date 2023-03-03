@@ -1,0 +1,46 @@
+class Solution
+{
+    static long gcd(long a, long b) 
+    {
+
+        if(a == 0) return b;
+
+        while(a != 0)
+        {
+
+            long temp = a;
+
+            a = b % a;
+
+            b = temp;
+
+        }
+
+        return b;
+
+    }
+
+    
+    static List<Long> minimumSquares(long L, long B)
+
+    {
+
+        long maxDimension = gcd(Math.max(L,B), Math.min(L,B));
+
+        long maxSquareArea = maxDimension * maxDimension;
+
+        long rectArea = L * B;
+
+        long n = rectArea / maxSquareArea;
+
+        List<Long> ans = new ArrayList<>();
+
+        ans.add(n);
+
+        ans.add(maxDimension);
+
+        return ans;
+
+    }
+
+}

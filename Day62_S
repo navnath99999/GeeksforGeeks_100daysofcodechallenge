@@ -1,0 +1,61 @@
+
+/*Complete the finction below
+Node is as follows
+class Node{
+    int data;
+    Node left,right;
+    Node(int d){
+        data=d;
+        left=right=null;
+    }
+}*/
+class Solution 
+{
+   public int maxLevelSum(Node root) 
+   {
+
+
+        Queue<Node> q=new LinkedList<>();
+
+        q.offer(root);
+
+        int max=Integer.MIN_VALUE;
+
+        while(!q.isEmpty())
+        {
+
+            int n=q.size();
+
+            int sum=0;
+
+            for(int i=0;i<n;i++)
+            {
+
+                Node temp=q.poll();
+
+                sum+=temp.data;
+
+                if(temp.left!=null)
+                {
+
+                    q.offer(temp.left);
+
+                }
+
+                if(temp.right!=null)
+                {
+
+                    q.offer(temp.right);
+
+                }
+
+            }
+
+            max=Math.max(max,sum);
+
+        }
+
+        return max;
+
+    }
+}

@@ -1,0 +1,90 @@
+class Solution
+{
+    
+	long maximizeMinHeight(int N, int K, int W,int [] a)
+    {
+       long ans = -1;
+    
+   
+    long minFlowerHeight = Arrays.stream(a).min().getAsInt();
+    
+    
+    long maxPossibleHeight = Integer.MAX_VALUE / 2;
+    
+
+    while (minFlowerHeight <= maxPossibleHeight) 
+    {
+        
+        int guessHeight = (int) ((maxPossibleHeight + minFlowerHeight) / 2);
+        
+     
+        if (isPossible(a, K, W, guessHeight)) 
+        {
+            ans = guessHeight;
+            
+            minFlowerHeight = guessHeight + 1;
+        } 
+        else 
+        {
+            maxPossibleHeight = guessHeight - 1;
+        }
+    }
+    
+    
+    return ans;
+}
+
+
+private boolean isPossible(int[] heights, int days, int contiguous, long minHeight) 
+{
+    int n = heights.length;
+    
+    long[] waterSupply = new long[n];
+    
+    
+    if (heights[0] < minHeight) 
+    {
+        waterSupply[0] = minHeight - heights[0];
+        
+        days -= (minHeight - heights[0]);
+    }
+    
+   
+    if (days < 0) 
+    {
+        return false;
+    }
+    
+   
+    for (int i = 1; i < n; i++) 
+    {
+        waterSupply[i] = waterSupply[i - 1];
+       
+        int actualHeight = heights[i];
+        
+        if (i >= contiguous) 
+        {
+            actualHeight += (waterSupply[i] - waterSupply[i - contiguous]);
+        } 
+        else 
+        {
+            actualHeight += waterSupply[i];
+        }
+        
+       
+        if (actualHeight < minHeight) 
+        {
+            waterSupply[i] += (minHeight - actualHeight);
+            days -= (minHeight - actualHeight);
+        }
+        
+        
+        if (days < 0) 
+        {
+            return false;
+        }
+    }
+
+    return true;
+    }
+}

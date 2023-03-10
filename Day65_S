@@ -1,0 +1,69 @@
+class Solution 
+{
+      Long maxTripletProduct(Long arr[], int n)
+      {
+
+        long smallest = Integer.MAX_VALUE;
+
+        long ssmallest = Integer.MAX_VALUE;        
+
+        long largest = Integer.MIN_VALUE;
+
+        long slargest = Integer.MIN_VALUE;
+
+        long tlargest = Integer.MIN_VALUE;
+
+        for
+        {
+
+            if( num > largest )
+            {
+
+                tlargest = slargest;
+
+                slargest = largest;
+
+                largest = num;
+
+            }
+
+            else if( num > slargest)
+            {
+
+                tlargest = slargest;
+
+                slargest = num;
+
+            }
+
+            else if( num > tlargest)
+            {
+
+                tlargest = num;
+
+            }
+
+            
+
+            if( num < smallest)
+            {
+
+                ssmallest = smallest;
+
+                smallest = num;
+
+            }
+
+            else if( num < ssmallest)
+            {
+
+                ssmallest = num;
+
+            }
+
+        }
+
+        return Math.max( smallest*ssmallest*largest ,largest*slargest*tlargest );
+
+    }
+}

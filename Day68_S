@@ -1,0 +1,52 @@
+class Solution 
+{ 
+
+    long maxPossibleValue(int n, int len[] ,int qty[]) 
+    { 
+
+       int min = Integer.MAX_VALUE;
+
+       long sum = 0;
+
+       for(int i = 0;i<n;i++)
+       {
+
+           if(qty[i] >=4 )
+           {
+
+               min = Math.min(min, len[i]);
+
+               sum += (qty[i]/4)*len[i]*4;
+
+               qty[i] %= 4;
+
+           }
+
+       }
+
+      int count = 0;
+
+      for(int i = 0;i<n;i++)
+      {
+
+          if(qty[i] >=2 )
+          {
+
+              min = Math.min(min, len[i]);
+
+              count += 1;
+
+              sum += len[i]*2;
+
+              qty[i] %= 2;
+
+          }
+
+      }
+
+      if(count%2 != 0) sum -= min*2;
+
+        return sum;
+
+    }
+} 

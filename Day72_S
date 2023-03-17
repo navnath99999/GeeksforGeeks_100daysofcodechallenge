@@ -1,0 +1,31 @@
+
+//User function Template for Java
+
+class Solution
+{
+	long no_of_subarrays(int N, int [] arr) 
+	{
+		//Write your code here
+		
+		long Count = 0,ans = 0;
+		
+        for(int i:arr)
+        {
+            if(i==1 && Count>0)
+            {
+                ans+=(Count*(Count+1))/2;
+                
+                Count = 0;
+            }
+            else if(i==0)
+            {
+                Count++;
+            }
+        }
+        if(Count>0)
+        {
+            ans+=(Count*(Count+1))/2;
+        }
+        return ans;
+	}
+}

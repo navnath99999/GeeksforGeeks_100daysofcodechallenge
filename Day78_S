@@ -1,0 +1,35 @@
+
+class Solution
+{
+    public static int maxDifferenceBST(Node root,int target)
+    {
+        //Please code here
+        return search(root,target,0);
+    }
+    
+    public static int search(Node root,int target,int sum) {
+        if(root==null) return -1;
+        if(root.data<target) {
+            return search(root.right,target,sum+root.data);
+        } else if(root.data>target) {
+            return search(root.left,target,sum+root.data);
+        } else {
+            int min = Math.min(minimumSum(root.left),minimumSum(root.right));
+            if(min==Integer.MAX_VALUE) min=0;
+            return sum-min;
+        }
+    }
+    
+    public static int minimumSum(Node root) {
+        if(root==null) return Integer.MAX_VALUE;
+        if(root.left==null && root.right==null) {
+            return root.data;
+        } else if(root.left==null) {
+            return minimumSum(root.right)+root.data;
+        } else if(root.right==null) {
+            return minimumSum(root.left)+root.data;
+        } else {
+            return Math.min(minimumSum(root.left),minimumSum(root.right))+root.data;
+        }
+    }
+}

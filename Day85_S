@@ -1,0 +1,43 @@
+
+class Solution 
+{
+    public static int minimumInteger(int N, int[] A) 
+    {
+        // code here
+        
+        int sum=0 ;
+        
+        // use for each loop
+        for(int result : A)
+        {
+            sum=sum+result ;
+        }
+        
+        int b = sum/N ;
+        
+        int temp=0 ;
+        
+        if(sum==N*b)
+        {
+            temp=b ;
+        }
+        else
+        {
+            temp=b+1 ;
+        }
+        
+        int ans = Integer.MAX_VALUE ;
+        
+        for(int i=0;i<N;i++)
+        {
+            if(A[i]>=temp)
+            {
+                ans = Math.min(ans,A[i]) ;
+            }
+        }
+        
+        return ans ;
+        
+    }
+}
+       
